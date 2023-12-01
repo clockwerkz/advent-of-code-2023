@@ -17,25 +17,36 @@ function convertNumber(el) {
 module.exports = function(input) {
     let sum = 0;
     const calibrationValues = input.split('\n');
-    const regexStr = Object.keys(numberConversion).join('|'); 
-    const regex = new RegExp(`[0-9]|${regexStr}`, "g");
-    console.log(regex);
-    for (let i = 0; i < calibrationValues.length; i++) {
-        const calibrationValue = calibrationValues[i];
-        const digitsArray = calibrationValue.match(regex);
-        if (!digitsArray) continue;
-        let number;
-        const [ firstDigit ] = digitsArray;
-        if (digitsArray.length < 2) {
-        
-            number = parseInt(`${convertNumber(firstDigit)}${convertNumber(firstDigit)}`);
-        } else {
-            const lastDigit = digitsArray[digitsArray.length - 1];
-            number = parseInt(`${convertNumber(firstDigit)}${convertNumber(lastDigit)}`);
+    for (let calibrationValue of calibrationValues) {
+        let firstDigit = '', lastDigit = '';
+        let min = calibrationValue.length;
+        let max = -1;
+        for (key of Object.keys(numberConversion)) {
+            const firstIndex = calibrationValue.indexOf(key);
+            const lastIndex = calibrationValue.lastIndexOf(key);
+            if (firstIndex !== -1 && firstIndex < min) {
+                firstDigit = key;
+                min = firstIndex;
+            } 
+            if (lastIndex > max){
+                lastDigit = key;
+                max = lastIndex;
+            }
         }
-        console.log(`${calibrationValue}: ${number} + ${sum} = ${number + sum}`);
-        sum += number;
-        // console.log(calibrationValue, digitsArray, number);
+        for (let i=1; i<10; i++) {
+            const firstIndex = calibrationValue.indexOf(i);
+            const lastIndex = calibrationValue.lastIndexOf(i);
+            if (firstIndex !== -1 && firstIndex < min) {
+                firstDigit = i;
+                min = firstIndex;
+            } 
+            if (lastIndex > max){
+                lastDigit = i;
+                max = lastIndex;
+            }
+        }
+        const value = parseInt(`${convertNumber(firstDigit)}${convertNumber(lastDigit)}`);
+        sum += value;
     }
     return sum;
 }
