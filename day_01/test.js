@@ -4,7 +4,7 @@ const one = require("./one");
 const two = require("./two");
 const { processLine } = require("./utility")
 
-describe("Day 1 - Utility Functions: Process Line" ,()=>{
+describe("Day #1 - Part 2: processLine" ,()=>{
     let input = "1xxx7";
     let answer = 17;
     it(`processLine ${input}: should should return ${answer}`,()=>{

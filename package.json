@@ -19,5 +19,8 @@
   "homepage": "https://github.com/clockwerkz/advent-of-code-2023#readme",
   "devDependencies": {
     "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
