@@ -12,6 +12,13 @@ describe("Day 3 - FindRestOfNumber", ()=>{
     it(`provided index 0, the answer should be 35`, ()=>{
         assert.strictEqual(findRestOfNumber(input, 0), 35);
     })
+    it(`provided index 1, the answer should be 35`, ()=>{
+        assert.strictEqual(findRestOfNumber(input, 1), 35);
+    })
+    const input2 = '467..114..';
+    it(`provided index 1, the answer should be 35`, ()=>{
+        assert.strictEqual(findRestOfNumber(input2, 2), 467);
+    })
 });
 
 describe("Day #3 - adjacentToSymbol",()=>{
@@ -25,8 +32,12 @@ describe("Day #3 - adjacentToSymbol",()=>{
 ......755.
 ...$.*....
 .664.598..`;
-    const answer = 6;
+    const answer = 4361;
     it(`should return ${answer}`,()=>{
-        assert.strictEqual(adjacentToSymbol(input), answer);
+        assert.strictEqual(adjacentToSymbol(input), 4361);
+    });
+    const input2 = '..368*901..';
+    it(`should return 1269`,()=>{
+        assert.strictEqual(adjacentToSymbol(input2), 1269);
     });
 });
