@@ -2,7 +2,7 @@ const assert = require('assert');
 const _ = require("lodash");
 const one = require("./one");
 const two = require("./two");
-const { gameParser } = require("./utility");
+const { gameParser, fewestCubes, powerOfGame } = require("./utility");
 
 describe("Day #2 - Part 1: gameParser",()=>{
     const game1Id = 1;
@@ -33,5 +33,58 @@ describe("Day #2 - Part 1: gameParser",()=>{
     const res5 = gameParser(testLine5);
     it(`${testLine5} is valid`,()=>{
         assert.strictEqual(res2.isValid, true);
+    });
+});
+
+describe("Day #2 - Part 2: fewestCubes",()=>{
+    const testLine1 = " 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
+    const correct1 = { red: 4, green: 2, blue: 6};
+    const res1 = fewestCubes(testLine1);
+    it(`Response should be ${JSON.stringify(correct1)}`,()=>{
+        assert.strictEqual(_.isEqual(res1, correct1), true);
+    });
+    const power1 = 48;
+    it(`Power of ${JSON.stringify(correct1)} should be ${power1}`, ()=>{
+        assert.strictEqual(powerOfGame(testLine1), power1);
+    });
+    const testLine2 = " 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue";
+    const correct2 = { red: 1, green: 3, blue: 4};
+    const res2 = fewestCubes(testLine2);
+    it(`Response should be ${JSON.stringify(correct2)}`,()=>{
+        assert.strictEqual(_.isEqual(res2, correct2), true);
+    });
+    const power2 = 12;
+    it(`Power of ${JSON.stringify(correct2)} should be ${power2}`, ()=>{
+        assert.strictEqual(powerOfGame(testLine2), power2);
+    });
+    const testLine3 = " 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red";
+    const correct3 = { red: 20, green: 13, blue: 6};
+    const res3 = fewestCubes(testLine3);
+    it(`Response should be ${JSON.stringify(correct3)}`,()=>{
+        assert.strictEqual(_.isEqual(res3, correct3), true);
+    });
+    const power3 = 1560;
+    it(`Power of ${JSON.stringify(correct3)} should be ${power3}`, ()=>{
+        assert.strictEqual(powerOfGame(testLine3), power3);
+    });
+    const testLine4 = " 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red";
+    const correct4 = { red: 14, green: 3, blue: 15};
+    const res4 = fewestCubes(testLine4);
+    it(`Response should be ${JSON.stringify(correct4)}`,()=>{
+        assert.strictEqual(_.isEqual(res4, correct4), true);
+    });
+    const power4 = 630;
+    it(`Power of ${JSON.stringify(correct4)} should be ${power4}`, ()=>{
+        assert.strictEqual(powerOfGame(testLine4), power4);
+    });
+    const testLine5 = " 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
+    const correct5 = { red: 6, green: 3, blue: 2};
+    const res5 = fewestCubes(testLine5);
+    it(`Response should be ${JSON.stringify(correct5)}`,()=>{
+        assert.strictEqual(_.isEqual(res5, correct5), true);
+    });
+    const power5 = 36;
+    it(`Power of ${JSON.stringify(correct5)} should be ${power5}`, ()=>{
+        assert.strictEqual(powerOfGame(testLine5), power5);
     });
 });
