@@ -1,3 +1,7 @@
+const { adjacentToExactlyTwoSymbols } = require('./utility');
+
 module.exports = function(input) {
-    return 0;
+    const symbols = {};
+    input.split('').forEach(el => !symbols[el] ? symbols[el]=true : null);
+    return adjacentToExactlyTwoSymbols(input);
 }

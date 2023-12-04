@@ -4,7 +4,7 @@ const one = require("./one");
 const two = require("./two");
 const { processLine } = require("./utility")
 
-describe("Day #1 - Part 2: processLine" ,()=>{
+describe("Day #1 - Part 2: Return a two digit number comprised of the first number and last number in the line - both digits and spelled out numbers count" ,()=>{
     let input = "1xxx7";
     let answer = 17;
     it(`processLine ${input}: should should return ${answer}`,()=>{

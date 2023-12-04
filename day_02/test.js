@@ -4,7 +4,7 @@ const one = require("./one");
 const two = require("./two");
 const { gameParser, fewestCubes, powerOfGame } = require("./utility");
 
-describe("Day #2 - Part 1: gameParser",()=>{
+describe("Day #2 - Part 1: Given the results of a game, validate if the outcome was possible",()=>{
     const game1Id = 1;
     const testLine1 = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
     const res1 = gameParser(testLine1);
@@ -36,7 +36,7 @@ describe("Day #2 - Part 1: gameParser",()=>{
     });
 });
 
-describe("Day #2 - Part 2: fewestCubes",()=>{
+describe("Day #2 - Part 2: Fewest cubes possible in order for game session to be valid",()=>{
     const testLine1 = " 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green";
     const correct1 = { red: 4, green: 2, blue: 6};
     const res1 = fewestCubes(testLine1);
