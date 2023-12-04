@@ -89,4 +89,18 @@ describe("Day #3 - Part 2: Find cases where symbol is adjacent to exactly 2 gear
         it(`${input4} should return 12`,()=>{
             assert.strictEqual(adjacentToExactlyTwoSymbols(input4), 12);
         });
+        const input5 = `
+........
+..3%4...
+...8....`;
+        it(`${input5} should return 0`,()=>{
+            assert.strictEqual(adjacentToExactlyTwoSymbols(input5), 0);
+        });
+        const input6 = `
+........
+...%4...
+........`;
+        it(`${input6} should return 0`,()=>{
+            assert.strictEqual(adjacentToExactlyTwoSymbols(input6), 0);
+        });
 })
