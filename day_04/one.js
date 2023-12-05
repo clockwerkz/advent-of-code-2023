@@ -1,3 +1,6 @@
+const { processEntries } = require('./utility');
+
 module.exports = function(input) {
-    return 0;
+
+    return processEntries(input);
 }

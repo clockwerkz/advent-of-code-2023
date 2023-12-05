@@ -1,3 +1,5 @@
+const { countingDuplicateCards } = require('./utility');
+
 module.exports = function(input) {
-    return 0;
+    return countingDuplicateCards(input);
 }
