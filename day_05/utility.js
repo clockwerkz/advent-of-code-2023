@@ -7,17 +7,16 @@ function separateData(input) {
 
 
 function mapper (text) {
-    const map = {};
+    const srcMap = [], destMap = [];
     const textInput = text.split('\n');
     const mapName = textInput[0];
     const values = textInput.slice(1);
     values.forEach(value => {
         const [dest, src, range] = value.split(' ').map(el => parseInt(el));
-        for (let i=0; i<range; i++) {
-            map[src+i] = dest + i;
-        }
+        srcMap.push([src, src+range-1])
+        destMap.push([dest, dest+range-1])
     });
-    return {mapName, map};
+    return {mapName, srcMap, destMap};
 }
 
 function findLowestLocationValue(input) {
@@ -42,17 +41,22 @@ function findLowestLocationValue(input) {
     let lowestValue = Infinity;
     const { seeds: seedsData, mappers } = separateData(input);
     mappers.forEach(mapperText => {
-        const { mapName, map } = mapper(mapperText);
-        sourceToDestinationMaps[mapName] = map;
+        const { mapName, srcMap, destMap } = mapper(mapperText);
+        sourceToDestinationMaps[mapName] = {srcMap, destMap};
     });
     const seeds = seedsData.match(/\d+/g);
     seeds.forEach(seed => {
         let currentVal = seed;
         for (let key of srcToDestKeys) {
-            currentMappingValue = sourceToDestinationMaps[key][currentVal]
-            if (currentMappingValue) {
-                currentVal = currentMappingValue;
-            }
+            const { srcMap, destMap } = sourceToDestinationMaps[key];
+            for (let i=0; i < srcMap.length; i++) {
+                const [ min, max ] = srcMap[i];
+                if (currentVal >= min && currentVal <= max ) {
+                    const offset = currentVal - min;
+                    currentVal = destMap[i][0] + offset;
+                    break;
+                }
+            };
         }
         if (currentVal < lowestValue) {
             lowestValue = currentVal;
