@@ -1,3 +1,5 @@
+const { findLowestLocationValue } = require('./utility');
+
 module.exports = function(input) {
-    return 0;
+    return findLowestLocationValue(input);
 }

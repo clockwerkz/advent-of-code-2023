@@ -13,9 +13,6 @@ function mapper (text) {
     const values = textInput.slice(1);
     values.forEach(value => {
         const [dest, src, range] = value.split(' ').map(el => parseInt(el));
-        if (mapName === 'soil-to-fertilizer map:') {
-            console.log(mapName, dest, src, range);
-        }
         for (let i=0; i<range; i++) {
             map[src+i] = dest + i;
         }
@@ -48,12 +45,14 @@ function findLowestLocationValue(input) {
         const { mapName, map } = mapper(mapperText);
         sourceToDestinationMaps[mapName] = map;
     });
-    console.log(sourceToDestinationMaps['soil-to-fertilizer map:']);
     const seeds = seedsData.match(/\d+/g);
     seeds.forEach(seed => {
         let currentVal = seed;
         for (let key of srcToDestKeys) {
-            currentVal = sourceToDestinationMaps[key][currentVal]
+            currentMappingValue = sourceToDestinationMaps[key][currentVal]
+            if (currentMappingValue) {
+                currentVal = currentMappingValue;
+            }
         }
         if (currentVal < lowestValue) {
             lowestValue = currentVal;
