@@ -2,7 +2,7 @@ const assert = require('assert');
 const _ = require("lodash");
 const one = require("./one");
 const two = require("./two");
-const { mapper, separateData, findLowestLocationValue } = require('./utility');
+const { mapper, separateData, findLowestLocationValue,findLowestLocationValueInRange, findSeedRanges } = require('./utility');
 
 describe("Day #5 - Mapping Function",()=>{
     const sampleInput = `seeds: 79 14 55 13
@@ -45,17 +45,14 @@ humidity-to-location map:
     it(`should return an object with a property mapName`,()=>{
         assert.strictEqual(mapper(seedToSoil).hasOwnProperty("mapName"), true);
     });
+    
     it('should split up the input text and return two objects, seeds and mappers', ()=>{
         assert.strictEqual(separateData(sampleInput).hasOwnProperty('seeds'), true);
     });
     it('using test input, should return the lowest location value of 35', ()=>{
         assert.strictEqual(findLowestLocationValue(sampleInput), 35);
-    })
-});
-
-describe("Day # - Part 2",()=>{
-    const answer = 0;
-    it(`should return ${answer}`,()=>{
-        assert.strictEqual(two(), answer);
+    });
+    it('using findLowestLocationValueInRange the lowest location should be 46', ()=>{
+        assert.strictEqual(findLowestLocationValueInRange(sampleInput), 46);
     });
 });
