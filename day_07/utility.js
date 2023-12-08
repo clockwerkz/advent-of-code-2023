@@ -5,14 +5,20 @@ Object.values(cardsArray).forEach((card, i) => {
 })
 
 function isGreater(c1, c2) {
-    const { order: o1, hand: h1 } = c1;
-    const { order: o2, hand: h2 } = c1;
+    console.log('isGreater', c1, c2);
+    const { card: card1, order: o1, hand: h1 } = c1;
+    const { card: card2, order: o2, hand: h2 } = c2;
     if (o1 !== o2) {
         return o1 > o2;
     }
-    for (let i=0; i < h1.length; i++) {
-        if (h1[i] !== h2[i]) {
-            return order[h1[i]] > order[h2[i]];
+    console.log('h1', h1, 'h2', h2);
+    if (h1 !== h2) {
+        return h1 > h2;
+    }
+    for (let i=0; i < card1.length; i++) {
+        if (card1[i] !== card2[i]) {
+            console.log('order', order[card1[i]], '>', order[card2[i]]);
+            return order[card1[i]] > order[card2[i]];
         }
     }
     return true;
@@ -41,9 +47,9 @@ function parseCardInfo(cardsStr) {
     }
     else if (hand === 3){
         const cardToCheck = typesOfCards.some(card => cardCount[card] === 3)
-        console.log(cardsStr, cardToCheck);
         handStrength = cardToCheck ? 2 : 1;
     }
+    console.log(cardsStr, handStrength);
     return { card: cardsStr, hand : handStrength };
 }
 
