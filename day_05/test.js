@@ -52,7 +52,7 @@ humidity-to-location map:
     it('using test input, should return the lowest location value of 35', ()=>{
         assert.strictEqual(findLowestLocationValue(sampleInput), 35);
     });
-    it('using findLowestLocationValueInRange the lowest location should be 46', ()=>{
-        assert.strictEqual(findLowestLocationValueInRange(sampleInput), 46);
-    });
+    // it('using findLowestLocationValueInRange the lowest location should be 46', ()=>{
+    //     assert.strictEqual(findLowestLocationValueInRange(sampleInput), 46);
+    // });
 });

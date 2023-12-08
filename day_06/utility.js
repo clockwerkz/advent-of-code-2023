@@ -19,9 +19,17 @@ function parseInputToRaces(input) {
     return races;
 }
 
+function parseInputOneRace(input) {
+    const [timeStr, distanceStr] = input.split('\n');
+    const time = parseInt(timeStr.match(/\d+/g).join(''));
+    const distance = parseInt(distanceStr.match(/\d+/g).join(''));
+    return [time, distance];
+}
+
 
 
 module.exports = {
     rangeOfRaceTimes,
-    parseInputToRaces
+    parseInputToRaces,
+    parseInputOneRace
 }

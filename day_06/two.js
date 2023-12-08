@@ -1,3 +1,7 @@
+const { range } = require('lodash');
+const { rangeOfRaceTimes, parseInputOneRace } = require('./utility');
+
 module.exports = function(input) {
-    return 0;
+    const [ time, distance ] = parseInputOneRace(input);
+    return rangeOfRaceTimes(time, distance);
 }
